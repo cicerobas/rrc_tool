@@ -2,13 +2,16 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
+import 'package:rrc_tool/constants.dart';
 
 import '../models/asstec_model.dart';
 import 'strings.dart';
 
 Future<void> generatePdf(Asstec asstec, String savePath) async {
   final pdf = pw.Document();
-  final logo = pw.MemoryImage(File('assets/logo.png').readAsBytesSync());
+
+  final logo = await networkImage(logoImagePath);
   var openSansFont = await rootBundle.load("assets/OpenSans-Regular.ttf");
 
   String serialNumbers = '';
