@@ -570,6 +570,6 @@ Future<void> generatePdf(Asstec asstec, String savePath) async {
             ]),
   );
   final file = File(
-      '$savePath/ASSTEC ${asstec.id} ${asstec.group} - ${asstec.customer}.pdf');
+      '$savePath/RRC ASSTEC ${asstec.id} ${asstec.group} - ${asstec.customer}.pdf');
   await file.writeAsBytes(await pdf.save());
 }
