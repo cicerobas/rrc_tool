@@ -91,6 +91,9 @@ class _HomePageState extends State<HomePage> {
                         if (searchFieldController.text.isEmpty) {
                           showCustomMessage('Entrada Inválida');
                         } else {
+                          setState(() {
+                            isDone = false;
+                          });
                           searchAsstec(searchFieldController.text);
                         }
                       },
@@ -101,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     margin: const EdgeInsets.symmetric(vertical: 10),
                     child: Visibility(
-                        visible: asstecFound,
+                        visible: asstecFound && !isDone,
                         child: ElevatedButton.icon(
                             onPressed: () async {
                               setState(() {
@@ -123,9 +126,7 @@ class _HomePageState extends State<HomePage> {
                                 isLoading = !isLoading;
                               });
                             },
-                            icon: Icon(isDone
-                                ? Icons.file_download_done
-                                : Icons.file_copy),
+                            icon: const Icon(Icons.file_copy),
                             label: const Text('Gerar RRC'))),
                   )
                 ],
